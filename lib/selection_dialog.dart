@@ -99,19 +99,19 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   Padding(child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AnimatedSwitcher(
+                      Flexible(child: AnimatedSwitcher(
                         duration: Duration(milliseconds: 300),
                         child: _isSearch
-                            ? Flexible(child: TextField(
+                            ? TextField(
                                 style: widget.searchStyle,
                                 decoration: widget.searchDecoration,
                                 onChanged: _filterElements,
-                              ))
+                              )
                             : Text(
                                 "Pick a country code",
                                 style: widget.searchTitleStyle,
                               ),
-                      ),
+                      ),),
                       Material(
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(28.0)),
