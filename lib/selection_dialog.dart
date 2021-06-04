@@ -61,7 +61,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+        padding: const EdgeInsets.all(0),
         child: Container(
           clipBehavior: Clip.hardEdge,
           width: widget.size?.width ?? MediaQuery.of(context).size.width,
@@ -80,9 +80,11 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   ),
                 ],
               ),
-          child: Column(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+            child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(height: 10),
               Container(
@@ -93,8 +95,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
               ),
               Container(height: 10),
-              Expanded(
-                child: Row(
+              Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -119,7 +120,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                         )),
                   ],
                 ),
-              ),
+              
               Container(height: 10),
               if (!widget.hideSearch)
                 TextField(
@@ -162,7 +163,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 ),
               ),
             ],
-          ),
+          ),)
         ),
       );
 
