@@ -329,6 +329,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       });
     } else {
       showModalBottomSheet(
+        isScrollControlled: true,
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
         context: widget.bottomSheetContext ?? context,
         builder: (context) => SelectionDialog(
