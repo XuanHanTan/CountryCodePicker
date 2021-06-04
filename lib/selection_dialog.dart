@@ -102,11 +102,11 @@ class _SelectionDialogState extends State<SelectionDialog> {
                       AnimatedSwitcher(
                         duration: Duration(milliseconds: 300),
                         child: _isSearch
-                            ? TextField(
+                            ? Flexible(child: TextField(
                                 style: widget.searchStyle,
                                 decoration: widget.searchDecoration,
                                 onChanged: _filterElements,
-                              )
+                              ))
                             : Text(
                                 "Pick a country code",
                                 style: widget.searchTitleStyle,
@@ -124,7 +124,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                               autofocus: true,
                               padding: EdgeInsets.zero,
                               iconSize: 30,
-                              icon: _isSearch
+                              icon: !_isSearch
                                   ? widget.searchIcon!
                                   : widget.closeIcon!,
                               onPressed: () {
