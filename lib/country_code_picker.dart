@@ -351,6 +351,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
             searchTitleStyle: widget.searchTitleStyle,
             searchIcon: widget.searchIcon,
           ), onWillPop: (){
+            print("back button");
             Navigator.pop(context);
             return Future.value(false);
           }),
