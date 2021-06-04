@@ -95,28 +95,12 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   ),
                   Container(height: 10),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         "Pick a country code",
                         style: widget.searchTitleStyle,
                       ),
-                      Material(
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(28.0)),
-                          color: Colors.transparent,
-                          child: InkWell(
-                            customBorder: new RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(28.0)),
-                            radius: 28,
-                            child: IconButton(
-                              autofocus: true,
-                              padding: EdgeInsets.zero,
-                              iconSize: 30,
-                              icon: widget.closeIcon!,
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                          )),
                     ],
                   ),
                   if (!widget.hideSearch)
