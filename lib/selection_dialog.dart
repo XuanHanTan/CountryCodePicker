@@ -96,7 +96,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                   Container(height: 10),
-                  Row(
+                  Padding(child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AnimatedSwitcher(
@@ -135,8 +135,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                             ),
                           )),
                     ],
-                  ),
-                  if (!widget.hideSearch) Container(height: 2),
+                  ), padding: EdgeInsets.only(bottom: 2),),
                   Expanded(
                     child: ListView(
                       children: [
