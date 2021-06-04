@@ -96,46 +96,48 @@ class _SelectionDialogState extends State<SelectionDialog> {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                   Container(height: 10),
-                  Padding(child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(child: AnimatedSwitcher(
-                        duration: Duration(milliseconds: 300),
-                        child: _isSearch
-                            ? TextField(
-                                style: widget.searchStyle,
-                                decoration: widget.searchDecoration,
-                                onChanged: _filterElements,
-                              )
-                            : Text(
-                                "Pick a country code",
-                                style: widget.searchTitleStyle,
+                  Padding(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: _isSearch
+                              ? TextField(
+                                  style: widget.searchStyle,
+                                  decoration: widget.searchDecoration,
+                                  onChanged: _filterElements,
+                                )
+                              : Text(
+                                  "Pick a country code",
+                                  style: widget.searchTitleStyle,
+                                ),
+                        ),
+                        Material(
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(28.0)),
+                            color: Colors.transparent,
+                            child: InkWell(
+                              customBorder: new RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(28.0)),
+                              radius: 28,
+                              child: IconButton(
+                                autofocus: true,
+                                padding: EdgeInsets.zero,
+                                iconSize: 30,
+                                icon: !_isSearch
+                                    ? widget.searchIcon!
+                                    : widget.closeIcon!,
+                                onPressed: () {
+                                  setState(() {
+                                    _isSearch = !_isSearch;
+                                  });
+                                },
                               ),
-                      ),),
-                      Material(
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(28.0)),
-                          color: Colors.transparent,
-                          child: InkWell(
-                            customBorder: new RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(28.0)),
-                            radius: 28,
-                            child: IconButton(
-                              autofocus: true,
-                              padding: EdgeInsets.zero,
-                              iconSize: 30,
-                              icon: !_isSearch
-                                  ? widget.searchIcon!
-                                  : widget.closeIcon!,
-                              onPressed: () {
-                                setState(() {
-                                  _isSearch = !_isSearch;
-                                });
-                              },
-                            ),
-                          )),
-                    ],
-                  ), padding: EdgeInsets.only(bottom: 2),),
+                            )),
+                      ],
+                    ),
+                    padding: EdgeInsets.only(bottom: 2),
+                  ),
                   Expanded(
                     child: ListView(
                       children: [
