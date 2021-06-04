@@ -329,7 +329,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       showModalBottomSheet(
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
         context: context,
-        builder: (context) =>  SelectionDialog(
+        builder: (context) => WillPopScope(child: SelectionDialog(
             elements,
             favoriteElements,
             showCountryOnly: widget.showCountryOnly,
@@ -350,7 +350,10 @@ class CountryCodePickerState extends State<CountryCodePicker> {
             closeIcon: widget.closeIcon,
             searchTitleStyle: widget.searchTitleStyle,
             searchIcon: widget.searchIcon,
-          ),
+          ), onWillPop: (){
+            Navigator.pop(context);
+            return Future.value(false);
+          }),
         
       ).then((e) {
         if (e != null) {
