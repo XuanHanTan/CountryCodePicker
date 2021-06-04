@@ -17,6 +17,7 @@ class SelectionDialog extends StatefulWidget {
   final Size? size;
   final bool hideSearch;
   final Icon? closeIcon;
+  final Icon? searchIcon;
 
   /// Background color of SelectionDialog
   final Color? backgroundColor;
@@ -45,6 +46,7 @@ class SelectionDialog extends StatefulWidget {
     this.barrierColor,
     this.hideSearch = false,
     this.closeIcon,
+    this.searchIcon,
     this.searchTitleStyle,
   }) : super(key: key);
 
@@ -55,7 +57,7 @@ class SelectionDialog extends StatefulWidget {
 class _SelectionDialogState extends State<SelectionDialog> {
   /// this is useful for filtering purpose
   late List<CountryCode> filteredElements;
-
+  bool _isSearch = false;
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(0),
@@ -95,21 +97,46 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   ),
                   Container(height: 10),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Pick a country code",
-                        style: widget.searchTitleStyle,
+                      AnimatedSwitcher(
+                        duration: Duration(milliseconds: 300),
+                        child: _isSearch
+                            ? TextField(
+                                style: widget.searchStyle,
+                                decoration: widget.searchDecoration,
+                                onChanged: _filterElements,
+                              )
+                            : Text(
+                                "Pick a country code",
+                                style: widget.searchTitleStyle,
+                              ),
                       ),
+                      Material(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(28.0)),
+                          color: Colors.transparent,
+                          child: InkWell(
+                            customBorder: new RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(28.0)),
+                            radius: 28,
+                            child: IconButton(
+                              autofocus: true,
+                              padding: EdgeInsets.zero,
+                              iconSize: 30,
+                              icon: _isSearch
+                                  ? widget.searchIcon!
+                                  : widget.closeIcon!,
+                              onPressed: () {
+                                setState(() {
+                                  _isSearch = !_isSearch;
+                                });
+                              },
+                            ),
+                          )),
                     ],
                   ),
-                  if (!widget.hideSearch)
-                    TextField(
-                      style: widget.searchStyle,
-                      decoration: widget.searchDecoration,
-                      onChanged: _filterElements,
-                    ),
-                  Container(height: 2),
+                  if (!widget.hideSearch) Container(height: 2),
                   Expanded(
                     child: ListView(
                       children: [
