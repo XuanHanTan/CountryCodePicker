@@ -329,32 +329,38 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       });
     } else {
       showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: widget.backgroundColor ?? Colors.transparent,
-        context: widget.bottomSheetContext ?? context,
-        builder: (context) => SelectionDialog(
-          elements,
-          favoriteElements,
-          showCountryOnly: widget.showCountryOnly,
-          emptySearchBuilder: widget.emptySearchBuilder,
-          searchDecoration: widget.searchDecoration,
-          searchStyle: widget.searchStyle,
-          textStyle: widget.dialogTextStyle,
-          boxDecoration: widget.boxDecoration,
-          showFlag: widget.showFlagDialog != null
-              ? widget.showFlagDialog
-              : widget.showFlag,
-          flagWidth: widget.flagWidth,
-          flagDecoration: widget.flagDecoration,
-          size: widget.dialogSize,
-          backgroundColor: widget.dialogBackgroundColor,
-          barrierColor: widget.barrierColor,
-          hideSearch: widget.hideSearch,
-          closeIcon: widget.closeIcon,
-          searchTitleStyle: widget.searchTitleStyle,
-          searchIcon: widget.searchIcon,
-        ),
-      ).then((e) {
+          isScrollControlled: true,
+          backgroundColor: widget.backgroundColor ?? Colors.transparent,
+          context: widget.bottomSheetContext ?? context,
+          builder: (context) => StatefulBuilder(builder: (context, setStateS) {
+                return Container(
+                  height: MediaQuery.of(context).size.height -
+                      180 -
+                      MediaQuery.of(context).padding.top,
+                  child: SelectionDialog(
+                    elements,
+                    favoriteElements,
+                    showCountryOnly: widget.showCountryOnly,
+                    emptySearchBuilder: widget.emptySearchBuilder,
+                    searchDecoration: widget.searchDecoration,
+                    searchStyle: widget.searchStyle,
+                    textStyle: widget.dialogTextStyle,
+                    boxDecoration: widget.boxDecoration,
+                    showFlag: widget.showFlagDialog != null
+                        ? widget.showFlagDialog
+                        : widget.showFlag,
+                    flagWidth: widget.flagWidth,
+                    flagDecoration: widget.flagDecoration,
+                    size: widget.dialogSize,
+                    backgroundColor: widget.dialogBackgroundColor,
+                    barrierColor: widget.barrierColor,
+                    hideSearch: widget.hideSearch,
+                    closeIcon: widget.closeIcon,
+                    searchTitleStyle: widget.searchTitleStyle,
+                    searchIcon: widget.searchIcon,
+                  ),
+                );
+              })).then((e) {
         if (e != null) {
           setState(() {
             selectedItem = e;
