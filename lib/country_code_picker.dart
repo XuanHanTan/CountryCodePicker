@@ -366,6 +366,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               ),
             ),
           ), onWillPop: (){
+            print("pop");
             Navigator.pop(context);
             return Future.value(false);
           });
