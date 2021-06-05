@@ -59,8 +59,8 @@ class _SelectionDialogState extends State<SelectionDialog> {
   late List<CountryCode> filteredElements;
   bool _isSearch = false;
   @override
-  Widget build(BuildContext context) => SafeArea(
-      child: Container(
+  Widget build(BuildContext context) => Column(children: [
+    Container(
           clipBehavior: Clip.hardEdge,
           width: widget.size?.width ?? MediaQuery.of(context).size.width,
           height:
@@ -173,7 +173,9 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 ),
               ],
             ),
-          )));
+          )),
+          Container(height: MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).padding.bottom,)
+  ],);
 
   Widget _buildOption(CountryCode e) {
     return Container(
