@@ -328,8 +328,10 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         }
       });
     } else {
-      Scaffold.of(widget.bottomSheetContext ?? context).showBottomSheet(
-        (context) {
+      showModalBottomSheet(
+        context: widget.bottomSheetContext ?? context,
+        isScrollControlled: true,
+        builder: (context) {
           var bottomSheetHt = MediaQuery.of(context).size.height -
               180 -
               MediaQuery.of(context).padding.top;

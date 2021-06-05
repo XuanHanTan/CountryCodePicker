@@ -59,123 +59,121 @@ class _SelectionDialogState extends State<SelectionDialog> {
   late List<CountryCode> filteredElements;
   bool _isSearch = false;
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(0),
-        child: Container(
-            clipBehavior: Clip.hardEdge,
-            width: widget.size?.width ?? MediaQuery.of(context).size.width,
-            height: widget.size?.height ??
-                MediaQuery.of(context).size.height * 0.85,
-            decoration: widget.boxDecoration ??
-                BoxDecoration(
-                  color: widget.backgroundColor ?? Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: widget.barrierColor ?? Colors.grey.withOpacity(1),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(height: 10),
-                  Container(
-                    height: 5,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                  ),
-                  Container(height: 10),
-                  Padding(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: _isSearch
-                              ? TextField(
-                                  style: widget.searchStyle,
-                                  decoration: widget.searchDecoration,
-                                  onChanged: _filterElements,
-                                )
-                              : Text(
-                                  "Pick a country code",
-                                  style: widget.searchTitleStyle,
-                                ),
-                        ),
-                        Material(
-                            shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(28.0)),
-                            color: Colors.transparent,
-                            child: InkWell(
-                              customBorder: new RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(28.0)),
-                              radius: 28,
-                              child: IconButton(
-                                autofocus: true,
-                                padding: EdgeInsets.zero,
-                                iconSize: 30,
-                                splashRadius: 24,
-                                icon: !_isSearch
-                                    ? widget.searchIcon!
-                                    : widget.closeIcon!,
-                                onPressed: () {
-                                  setState(() {
-                                    _isSearch = !_isSearch;
-                                  });
-                                },
-                              ),
-                            )),
-                      ],
-                    ),
-                    padding: EdgeInsets.only(bottom: 2),
-                  ),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        widget.favoriteElements.isEmpty
-                            ? const DecoratedBox(decoration: BoxDecoration())
-                            : Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ...widget.favoriteElements.map(
-                                    (f) => SimpleDialogOption(
-                                      child: _buildOption(f),
-                                      onPressed: () {
-                                        _selectItem(f);
-                                      },
-                                    ),
-                                  ),
-                                  const Divider(),
-                                ],
-                              ),
-                        if (filteredElements.isEmpty)
-                          _buildEmptySearchWidget(context)
-                        else
-                          ...filteredElements.map(
-                            (e) => SimpleDialogOption(
-                              child: _buildOption(e),
-                              onPressed: () {
-                                _selectItem(e);
-                              },
-                            ),
-                          ),
-                      ],
-                    ),
+  Widget build(BuildContext context) => SafeArea(
+      child: Container(
+          clipBehavior: Clip.hardEdge,
+          width: widget.size?.width ?? MediaQuery.of(context).size.width,
+          height:
+              widget.size?.height ?? MediaQuery.of(context).size.height * 0.85,
+          decoration: widget.boxDecoration ??
+              BoxDecoration(
+                color: widget.backgroundColor ?? Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16)),
+                boxShadow: [
+                  BoxShadow(
+                    color: widget.barrierColor ?? Colors.grey.withOpacity(1),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
                   ),
                 ],
               ),
-            )),
-      );
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(height: 10),
+                Container(
+                  height: 5,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                ),
+                Container(height: 10),
+                Padding(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: _isSearch
+                            ? TextField(
+                                style: widget.searchStyle,
+                                decoration: widget.searchDecoration,
+                                onChanged: _filterElements,
+                              )
+                            : Text(
+                                "Pick a country code",
+                                style: widget.searchTitleStyle,
+                              ),
+                      ),
+                      Material(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(28.0)),
+                          color: Colors.transparent,
+                          child: InkWell(
+                            customBorder: new RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(28.0)),
+                            radius: 28,
+                            child: IconButton(
+                              autofocus: true,
+                              padding: EdgeInsets.zero,
+                              iconSize: 30,
+                              splashRadius: 24,
+                              icon: !_isSearch
+                                  ? widget.searchIcon!
+                                  : widget.closeIcon!,
+                              onPressed: () {
+                                setState(() {
+                                  _isSearch = !_isSearch;
+                                });
+                              },
+                            ),
+                          )),
+                    ],
+                  ),
+                  padding: EdgeInsets.only(bottom: 2),
+                ),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      widget.favoriteElements.isEmpty
+                          ? const DecoratedBox(decoration: BoxDecoration())
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ...widget.favoriteElements.map(
+                                  (f) => SimpleDialogOption(
+                                    child: _buildOption(f),
+                                    onPressed: () {
+                                      _selectItem(f);
+                                    },
+                                  ),
+                                ),
+                                const Divider(),
+                              ],
+                            ),
+                      if (filteredElements.isEmpty)
+                        _buildEmptySearchWidget(context)
+                      else
+                        ...filteredElements.map(
+                          (e) => SimpleDialogOption(
+                            child: _buildOption(e),
+                            onPressed: () {
+                              _selectItem(e);
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )));
 
   Widget _buildOption(CountryCode e) {
     return Container(
