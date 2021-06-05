@@ -335,7 +335,10 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           var bottomSheetHt = MediaQuery.of(context).size.height -
               180 -
               MediaQuery.of(context).padding.top;
-          return Scaffold(body: Container(
+          return AnimatedPadding(
+            padding: MediaQuery.of(context).viewInsets,
+            duration: const Duration(milliseconds: 100),
+            child:  Container(
             height: bottomSheetHt,
             child: SelectionDialog(
               elements,
