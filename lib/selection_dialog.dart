@@ -60,6 +60,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
   bool _isSearch = false;
   @override
   Widget build(BuildContext context) => Container(
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       clipBehavior: Clip.hardEdge,
       width: widget.size?.width ?? MediaQuery.of(context).size.width,
       decoration: widget.boxDecoration ??
@@ -77,7 +78,9 @@ class _SelectionDialogState extends State<SelectionDialog> {
             ],
           ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
+        padding: EdgeInsets.only(
+            left: (10.0 + MediaQuery.of(context).padding.left),
+            right: (10.0 + MediaQuery.of(context).padding.right)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,

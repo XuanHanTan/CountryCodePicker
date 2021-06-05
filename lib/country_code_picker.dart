@@ -337,34 +337,35 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               MediaQuery.of(context).padding.top;
           return AnimatedPadding(
             padding: MediaQuery.of(context).viewInsets,
-            duration: const Duration(milliseconds: 100),
-            child:  Container(
-            height: bottomSheetHt,
-            child: SelectionDialog(
-              elements,
-              favoriteElements,
-              showCountryOnly: widget.showCountryOnly,
-              emptySearchBuilder: widget.emptySearchBuilder,
-              searchDecoration: widget.searchDecoration,
-              searchStyle: widget.searchStyle,
-              textStyle: widget.dialogTextStyle,
-              boxDecoration: widget.boxDecoration,
-              showFlag: widget.showFlagDialog != null
-                  ? widget.showFlagDialog
-                  : widget.showFlag,
-              flagWidth: widget.flagWidth,
-              flagDecoration: widget.flagDecoration,
-              size: widget.dialogSize,
-              backgroundColor: widget.dialogBackgroundColor,
-              barrierColor: widget.barrierColor,
-              hideSearch: widget.hideSearch,
-              closeIcon: widget.closeIcon,
-              searchTitleStyle: widget.searchTitleStyle,
-              searchIcon: widget.searchIcon,
-              onPress: _publishSelection,
-              //add onpressfunc
+            duration: Duration(milliseconds: 300),
+            child: Container(
+              height: bottomSheetHt,
+              child: SelectionDialog(
+                elements,
+                favoriteElements,
+                showCountryOnly: widget.showCountryOnly,
+                emptySearchBuilder: widget.emptySearchBuilder,
+                searchDecoration: widget.searchDecoration,
+                searchStyle: widget.searchStyle,
+                textStyle: widget.dialogTextStyle,
+                boxDecoration: widget.boxDecoration,
+                showFlag: widget.showFlagDialog != null
+                    ? widget.showFlagDialog
+                    : widget.showFlag,
+                flagWidth: widget.flagWidth,
+                flagDecoration: widget.flagDecoration,
+                size: widget.dialogSize,
+                backgroundColor: widget.dialogBackgroundColor,
+                barrierColor: widget.barrierColor,
+                hideSearch: widget.hideSearch,
+                closeIcon: widget.closeIcon,
+                searchTitleStyle: widget.searchTitleStyle,
+                searchIcon: widget.searchIcon,
+                onPress: _publishSelection,
+                //add onpressfunc
+              ),
             ),
-          ),);
+          );
         },
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
       );
