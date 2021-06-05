@@ -335,7 +335,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           var bottomSheetHt = MediaQuery.of(context).size.height -
               180 -
               MediaQuery.of(context).padding.top;
-          return Container(
+          return Scaffold(body: Container(
             height: bottomSheetHt,
             child: SelectionDialog(
               elements,
@@ -361,7 +361,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               onPress: _publishSelection,
               //add onpressfunc
             ),
-          );
+          ),);
         },
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
       );

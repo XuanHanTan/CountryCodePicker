@@ -174,7 +174,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
               ],
             ),
           )),
-          Container(height: MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).padding.bottom,)
   ],);
 
   Widget _buildOption(CountryCode e) {
