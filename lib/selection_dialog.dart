@@ -29,28 +29,26 @@ class SelectionDialog extends StatefulWidget {
   /// elements passed as favorite
   final List<CountryCode> favoriteElements;
 
-  SelectionDialog(
-    this.elements,
-    this.favoriteElements, {
-    Key? key,
-    this.showCountryOnly,
-    this.emptySearchBuilder,
-    required this.searchDecoration,
-    this.searchStyle,
-    this.textStyle,
-    this.boxDecoration,
-    this.showFlag,
-    this.flagDecoration,
-    this.flagWidth = 32,
-    this.size,
-    this.backgroundColor,
-    this.barrierColor,
-    this.hideSearch = false,
-    this.closeIcon,
-    this.searchIcon,
-    this.searchTitleStyle,
-    this.onPress
-  }) : super(key: key);
+  SelectionDialog(this.elements, this.favoriteElements,
+      {Key? key,
+      this.showCountryOnly,
+      this.emptySearchBuilder,
+      required this.searchDecoration,
+      this.searchStyle,
+      this.textStyle,
+      this.boxDecoration,
+      this.showFlag,
+      this.flagDecoration,
+      this.flagWidth = 32,
+      this.size,
+      this.backgroundColor,
+      this.barrierColor,
+      this.hideSearch = false,
+      this.closeIcon,
+      this.searchIcon,
+      this.searchTitleStyle,
+      this.onPress})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SelectionDialogState();
@@ -244,5 +242,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   void _selectItem(CountryCode e) {
     widget.onPress!(e);
+    Navigator.pop(context);
   }
 }
