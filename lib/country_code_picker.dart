@@ -328,21 +328,13 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         }
       });
     } else {
-      showModalBottomSheet(
-          isScrollControlled: true,
-          backgroundColor: widget.backgroundColor ?? Colors.transparent,
-          context: widget.bottomSheetContext ?? context,
-          builder: (context) {
+      Scaffold.of(widget.bottomSheetContext ?? context).showBottomSheet(
+       
+          (context) {
             var bottomSheetHt = MediaQuery.of(context).size.height -
                 300 -
                 MediaQuery.of(context).padding.top;
-            var maxBottomPadding = 300.0;
             return Container(
-              padding: EdgeInsets.only(
-                  bottom:
-                      MediaQuery.of(context).padding.bottom > maxBottomPadding
-                          ? (maxBottomPadding)
-                          : MediaQuery.of(context).padding.bottom),
               height: bottomSheetHt,
               child: SelectionDialog(
                 elements,
@@ -365,21 +357,19 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 closeIcon: widget.closeIcon,
                 searchTitleStyle: widget.searchTitleStyle,
                 searchIcon: widget.searchIcon,
+                onPress: _publishSelection,
+                //add onpressfunc
               ),
             );
-          }).then((e) {
-        if (e != null) {
-          setState(() {
-            selectedItem = e;
-          });
-
-          _publishSelection(e);
-        }
-      });
+          },
+             backgroundColor: widget.backgroundColor ?? Colors.transparent,);
     }
   }
 
   void _publishSelection(CountryCode e) {
+    setState(() {
+      selectedItem = e;
+    });
     if (widget.onChanged != null) {
       widget.onChanged!(e);
     }

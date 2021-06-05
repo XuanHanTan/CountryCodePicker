@@ -18,6 +18,7 @@ class SelectionDialog extends StatefulWidget {
   final bool hideSearch;
   final Icon? closeIcon;
   final Icon? searchIcon;
+  final Function? onPress;
 
   /// Background color of SelectionDialog
   final Color? backgroundColor;
@@ -48,6 +49,7 @@ class SelectionDialog extends StatefulWidget {
     this.closeIcon,
     this.searchIcon,
     this.searchTitleStyle,
+    this.onPress
   }) : super(key: key);
 
   @override
@@ -241,6 +243,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
   }
 
   void _selectItem(CountryCode e) {
-    Navigator.pop(context, e);
+    widget.onPress!(e);
   }
 }
