@@ -19,6 +19,7 @@ class SelectionDialog extends StatefulWidget {
   final Icon? closeIcon;
   final Icon? searchIcon;
   final Function? onPress;
+  final Color? dividerColor;
 
   /// Background color of SelectionDialog
   final Color? backgroundColor;
@@ -47,6 +48,7 @@ class SelectionDialog extends StatefulWidget {
       this.closeIcon,
       this.searchIcon,
       this.searchTitleStyle,
+      this.dividerColor,
       this.onPress})
       : super(key: key);
 
@@ -60,7 +62,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
   bool _isSearch = false;
   @override
   Widget build(BuildContext context) => Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       clipBehavior: Clip.hardEdge,
       width: widget.size?.width ?? MediaQuery.of(context).size.width,
       decoration: widget.boxDecoration ??
@@ -121,7 +122,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                         child: IconButton(
                           autofocus: true,
                           padding: EdgeInsets.zero,
-                          iconSize: 30,
+                          iconSize: 24,
                           splashRadius: 24,
                           icon: !_isSearch
                               ? widget.searchIcon!
@@ -153,7 +154,8 @@ class _SelectionDialogState extends State<SelectionDialog> {
                                 },
                               ),
                             ),
-                            const Divider(),
+                            Divider(color: widget.dividerColor,),
+                            //need divider colour
                           ],
                         ),
                   if (filteredElements.isEmpty)

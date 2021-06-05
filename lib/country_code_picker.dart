@@ -29,6 +29,7 @@ class CountryCodePicker extends StatefulWidget {
   final Icon searchIcon;
   final TextStyle? searchTitleStyle;
   final BuildContext? bottomSheetContext;
+  final Color? dividerColor;
 
   /// Barrier color of ModalBottomSheet
   final Color? barrierColor;
@@ -119,6 +120,7 @@ class CountryCodePicker extends StatefulWidget {
     Key? key,
     this.searchTitleStyle,
     this.bottomSheetContext,
+    this.dividerColor,
   }) : super(key: key);
 
   @override
@@ -338,6 +340,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
             padding: MediaQuery.of(context).viewInsets,
             duration: Duration(milliseconds: 300),
             child: Container(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
               height: bottomSheetHt,
               child: SelectionDialog(
                 elements,
@@ -361,7 +364,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 searchTitleStyle: widget.searchTitleStyle,
                 searchIcon: widget.searchIcon,
                 onPress: _publishSelection,
-                //add onpressfunc
+                dividerColor: widget.dividerColor,
               ),
             ),
           );
