@@ -328,14 +328,14 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         }
       });
     } else {
-      showModalBottomSheet(
+      showMaterialModalBottomSheet(
         context: widget.bottomSheetContext ?? context,
-        isScrollControlled: true,
+        //isScrollControlled: true,
         builder: (context) {
           var bottomSheetHt = MediaQuery.of(context).size.height -
               180 -
               MediaQuery.of(context).padding.top;
-          return AnimatedPadding(
+          return WillPopScope(child: AnimatedPadding(
             padding: MediaQuery.of(context).viewInsets,
             duration: Duration(milliseconds: 300),
             child: Container(
@@ -365,7 +365,10 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 //add onpressfunc
               ),
             ),
-          );
+          ), onWillPop: (){
+            Navigator.pop(context);
+            return Future.value(false);
+          });
         },
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
       );
