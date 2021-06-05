@@ -6,7 +6,6 @@ import 'package:country_code_picker/country_codes.dart';
 import 'package:country_code_picker/selection_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 export 'country_code.dart';
@@ -328,14 +327,14 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         }
       });
     } else {
-      showMaterialModalBottomSheet(
+      showModalBottomSheet(
         context: widget.bottomSheetContext ?? context,
-        //isScrollControlled: true,
+        isScrollControlled: true,
         builder: (context) {
           var bottomSheetHt = MediaQuery.of(context).size.height -
               180 -
               MediaQuery.of(context).padding.top;
-          return WillPopScope(child: AnimatedPadding(
+          return AnimatedPadding(
             padding: MediaQuery.of(context).viewInsets,
             duration: Duration(milliseconds: 300),
             child: Container(
@@ -365,11 +364,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 //add onpressfunc
               ),
             ),
-          ), onWillPop: (){
-            print("pop");
-            Navigator.pop(context);
-            return Future.value(false);
-          });
+          );
         },
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
       );
