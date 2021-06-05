@@ -332,35 +332,42 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           isScrollControlled: true,
           backgroundColor: widget.backgroundColor ?? Colors.transparent,
           context: widget.bottomSheetContext ?? context,
-          builder: (context) => StatefulBuilder(builder: (context, setStateS) {
-                return Container(
-                  height: MediaQuery.of(context).size.height -
-                      180 -
-                      MediaQuery.of(context).padding.top,
-                  child: SelectionDialog(
-                    elements,
-                    favoriteElements,
-                    showCountryOnly: widget.showCountryOnly,
-                    emptySearchBuilder: widget.emptySearchBuilder,
-                    searchDecoration: widget.searchDecoration,
-                    searchStyle: widget.searchStyle,
-                    textStyle: widget.dialogTextStyle,
-                    boxDecoration: widget.boxDecoration,
-                    showFlag: widget.showFlagDialog != null
-                        ? widget.showFlagDialog
-                        : widget.showFlag,
-                    flagWidth: widget.flagWidth,
-                    flagDecoration: widget.flagDecoration,
-                    size: widget.dialogSize,
-                    backgroundColor: widget.dialogBackgroundColor,
-                    barrierColor: widget.barrierColor,
-                    hideSearch: widget.hideSearch,
-                    closeIcon: widget.closeIcon,
-                    searchTitleStyle: widget.searchTitleStyle,
-                    searchIcon: widget.searchIcon,
-                  ),
-                );
-              })).then((e) {
+          builder: (context) {
+            var bottomSheetHt = MediaQuery.of(context).size.height -
+                300 -
+                MediaQuery.of(context).padding.top;
+            var maxBottomPadding = 300.0;
+            return Container(
+              padding: EdgeInsets.only(
+                  bottom:
+                      MediaQuery.of(context).padding.bottom > maxBottomPadding
+                          ? (maxBottomPadding)
+                          : MediaQuery.of(context).padding.bottom),
+              height: bottomSheetHt,
+              child: SelectionDialog(
+                elements,
+                favoriteElements,
+                showCountryOnly: widget.showCountryOnly,
+                emptySearchBuilder: widget.emptySearchBuilder,
+                searchDecoration: widget.searchDecoration,
+                searchStyle: widget.searchStyle,
+                textStyle: widget.dialogTextStyle,
+                boxDecoration: widget.boxDecoration,
+                showFlag: widget.showFlagDialog != null
+                    ? widget.showFlagDialog
+                    : widget.showFlag,
+                flagWidth: widget.flagWidth,
+                flagDecoration: widget.flagDecoration,
+                size: widget.dialogSize,
+                backgroundColor: widget.dialogBackgroundColor,
+                barrierColor: widget.barrierColor,
+                hideSearch: widget.hideSearch,
+                closeIcon: widget.closeIcon,
+                searchTitleStyle: widget.searchTitleStyle,
+                searchIcon: widget.searchIcon,
+              ),
+            );
+          }).then((e) {
         if (e != null) {
           setState(() {
             selectedItem = e;
