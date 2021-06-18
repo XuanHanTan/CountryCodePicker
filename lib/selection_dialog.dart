@@ -123,7 +123,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                           autofocus: true,
                           padding: EdgeInsets.zero,
                           iconSize: 24,
-                          splashRadius: 24,
+                          splashRadius: 20,
                           icon: !_isSearch
                               ? widget.searchIcon!
                               : widget.closeIcon!,
