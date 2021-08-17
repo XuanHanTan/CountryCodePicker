@@ -22,7 +22,7 @@ List<Map<String, String>> codes = [
   {
     "name": "American Samoa",
     "code": "AS",
-    "dial_code": "+1684",
+    "dial_code": "+1",
   },
   {
     "name": "Andorra",
@@ -37,7 +37,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Anguilla",
     "code": "AI",
-    "dial_code": "+1264",
+    "dial_code": "+1",
   },
   {
     "name": "Antarctica",
@@ -47,7 +47,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Antigua and Barbuda",
     "code": "AG",
-    "dial_code": "+1268",
+    "dial_code": "+1",
   },
   {
     "name": "Argentina",
@@ -82,7 +82,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Bahamas",
     "code": "BS",
-    "dial_code": "+1242",
+    "dial_code": "+1",
   },
   {
     "name": "‏البحرين",
@@ -97,7 +97,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Barbados",
     "code": "BB",
-    "dial_code": "+1246",
+    "dial_code": "+1",
   },
   {
     "name": "Белару́сь",
@@ -122,7 +122,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Bermuda",
     "code": "BM",
-    "dial_code": "+1441",
+    "dial_code": "+1",
   },
   {
     "name": "ʼbrug-yul",
@@ -202,7 +202,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Cayman Islands",
     "code": "KY",
-    "dial_code": "+1345",
+    "dial_code": "+1",
   },
   {
     "name": "Ködörösêse tî Bêafrîka",
@@ -302,7 +302,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Dominica",
     "code": "DM",
-    "dial_code": "+1767",
+    "dial_code": "+1",
   },
   {
     "name": "República Dominicana",
@@ -427,7 +427,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Grenada",
     "code": "GD",
-    "dial_code": "+1473",
+    "dial_code": "+1",
   },
   {
     "name": "Guadeloupe",
@@ -437,7 +437,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Guam",
     "code": "GU",
-    "dial_code": "+1671",
+    "dial_code": "+1",
   },
   {
     "name": "Guatemala",
@@ -542,7 +542,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Jamaica",
     "code": "JM",
-    "dial_code": "+1876",
+    "dial_code": "+1",
   },
   {
     "name": "日本",
@@ -742,7 +742,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Montserrat",
     "code": "MS",
-    "dial_code": "+1664",
+    "dial_code": "+1",
   },
   {
     "name": "المغرب",
@@ -822,7 +822,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Northern Mariana Islands",
     "code": "MP",
-    "dial_code": "+1670",
+    "dial_code": "+1",
   },
   {
     "name": "Norge",
@@ -892,12 +892,12 @@ List<Map<String, String>> codes = [
   {
     "name": "Puerto Rico",
     "code": "PR",
-    "dial_code": "+1939",
+    "dial_code": "+1",
   },
   {
     "name": "Puerto Rico",
     "code": "PR",
-    "dial_code": "+1787",
+    "dial_code": "+1",
   },
   {
     "name": "قطر",
@@ -937,12 +937,12 @@ List<Map<String, String>> codes = [
   {
     "name": "Saint Kitts and Nevis",
     "code": "KN",
-    "dial_code": "+1869",
+    "dial_code": "+1",
   },
   {
     "name": "Saint Lucia",
     "code": "LC",
-    "dial_code": "+1758",
+    "dial_code": "+1",
   },
   {
     "name": "Saint-Martin",
@@ -957,7 +957,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Saint Vincent and the Grenadines",
     "code": "VC",
-    "dial_code": "+1784",
+    "dial_code": "+1",
   },
   {
     "name": "Samoa",
@@ -1127,7 +1127,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Trinidad and Tobago",
     "code": "TT",
-    "dial_code": "+1868",
+    "dial_code": "+1",
   },
   {
     "name": "تونس",
@@ -1147,7 +1147,7 @@ List<Map<String, String>> codes = [
   {
     "name": "Turks and Caicos Islands",
     "code": "TC",
-    "dial_code": "+1649",
+    "dial_code": "+1",
   },
   {
     "name": "Tuvalu",
@@ -1207,12 +1207,12 @@ List<Map<String, String>> codes = [
   {
     "name": "British Virgin Islands",
     "code": "VG",
-    "dial_code": "+1284",
+    "dial_code": "+1",
   },
   {
     "name": "United States Virgin Islands",
     "code": "VI",
-    "dial_code": "+1340",
+    "dial_code": "+1",
   },
   {
     "name": "Wallis et Futuna",
