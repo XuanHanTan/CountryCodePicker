@@ -336,19 +336,13 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         isScrollControlled: true,
         builder: (dialogContext) {
           final mediaQueryData = MediaQuery.of(bottomSheetContext);
-          final maxBottomSheetHt = mediaQueryData.size.height -
-              mediaQueryData.padding.top -
-              mediaQueryData.viewInsets.bottom - 10;
           var bottomSheetHt = mediaQueryData.size.height -
               180 -
               mediaQueryData.padding.vertical;
-          if (bottomSheetHt > maxBottomSheetHt) {
-            bottomSheetHt = maxBottomSheetHt;
-          }
 
           return AnimatedPadding(
-            padding: mediaQueryData.viewInsets,
-            duration: Duration(milliseconds: 300),
+            padding: EdgeInsets.only(top: mediaQueryData.padding.top + 10, bottom: mediaQueryData.viewInsets.bottom),
+            duration: Duration(milliseconds: 100),
             child: Container(
               height: bottomSheetHt,
               child: SelectionDialog(
