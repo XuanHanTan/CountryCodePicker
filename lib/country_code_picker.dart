@@ -285,11 +285,13 @@ class CountryCodePickerState extends State<CountryCodePicker> {
   }
 
   void showCountryCodePickerDialog() {
+    final bottomSheetContext = widget.bottomSheetContext ?? context;
+
     if (!UniversalPlatform.isAndroid && !UniversalPlatform.isIOS) {
       showDialog(
         barrierColor: widget.barrierColor ?? Colors.grey.withOpacity(0.5),
         // backgroundColor: widget.backgroundColor ?? Colors.transparent,
-        context: widget.bottomSheetContext ?? context,
+        context: bottomSheetContext,
         builder: (context) => Center(
           child: Container(
             constraints: BoxConstraints(maxHeight: 500, maxWidth: 400),
@@ -330,17 +332,24 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       });
     } else {
       showModalBottomSheet(
-        context: widget.bottomSheetContext ?? context,
+        context: bottomSheetContext,
         isScrollControlled: true,
-        builder: (context) {
-          var bottomSheetHt = MediaQuery.of(context).size.height -
+        builder: (dialogContext) {
+          final mediaQueryData = MediaQuery.of(bottomSheetContext);
+          final maxBottomSheetHt = mediaQueryData.size.height -
+              mediaQueryData.padding.top -
+              mediaQueryData.viewInsets.bottom - 10;
+          var bottomSheetHt = mediaQueryData.size.height -
               180 -
-              MediaQuery.of(context).padding.top;
+              mediaQueryData.padding.vertical;
+          if (bottomSheetHt > maxBottomSheetHt) {
+            bottomSheetHt = maxBottomSheetHt;
+          }
+
           return AnimatedPadding(
-            padding: MediaQuery.of(context).viewInsets,
+            padding: mediaQueryData.viewInsets,
             duration: Duration(milliseconds: 300),
             child: Container(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
               height: bottomSheetHt,
               child: SelectionDialog(
                 elements,

@@ -3,7 +3,7 @@ import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(home: MyApp(),));
 
 class MyApp extends StatefulWidget {
   @override
@@ -141,6 +141,7 @@ class _MyAppState extends State<MyApp> {
                 width: 400,
                 height: 60,
                 child: CountryCodePicker(
+                                    bottomSheetContext: context,
                   onChanged: (e) => print(e.toLongString()),
                   initialSelection: 'TF',
                   showCountryOnly: true,
