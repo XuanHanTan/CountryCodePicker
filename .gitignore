@@ -7,3 +7,4 @@ packages
 .vscode
 *.lock
 .dart_tool/
+android/local.properties
