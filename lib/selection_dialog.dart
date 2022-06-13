@@ -104,45 +104,51 @@ class _SelectionDialogState extends State<SelectionDialog> {
               ),
               Container(height: 10),
               Padding(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: _isSearch
-                          ? TextField(
-                              style: widget.searchStyle,
-                              decoration: widget.searchDecoration,
-                              onChanged: _filterElements,
-                            )
-                          : Text(
-                              widget.searchTitleText,
-                              style: widget.searchTitleStyle,
-                            ),
-                    ),
-                    SizedBox(
-                      height: 48,
-                      width: 48,
-                      child: Material(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28.0)),
-                          color: Colors.transparent,
-                          child: InkWell(
-                            customBorder: RoundedRectangleBorder(
+                child: SizedBox(
+                  height: 48,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: _isSearch
+                            ? TextField(
+                                style: widget.searchStyle,
+                                decoration: widget.searchDecoration,
+                                onChanged: _filterElements,
+                              )
+                            : Text(
+                                widget.searchTitleText,
+                                style: widget.searchTitleStyle,
+                              ),
+                      ),
+                      Container(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        height: 48,
+                        width: 48,
+                        child: Material(
+                            shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(28.0)),
-                            radius: 28,
-                            onTap: () {
-                              setState(() {
-                                _isSearch = !_isSearch;
-                              });
-                            },
-                            child: !_isSearch
-                                ? widget.searchIcon!
-                                : widget.closeIcon!,
-                          )),
-                    ),
-                  ],
+                            color: Colors.transparent,
+                            child: InkWell(
+                              customBorder: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(28.0)),
+                              radius: 28,
+                              onTap: () {
+                                setState(() {
+                                  _isSearch = !_isSearch;
+                                });
+                              },
+                              child: !_isSearch
+                                  ? widget.searchIcon!
+                                  : widget.closeIcon!,
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
-                padding: EdgeInsets.only(bottom: 2),
+                padding: EdgeInsets.all(10),
               ),
               Expanded(
                 child: ListView(
