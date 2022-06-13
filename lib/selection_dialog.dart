@@ -112,7 +112,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: TextField(
-                        textAlignVertical: TextAlignVertical.center,
+                        cursorHeight: widget.searchStyle?.fontSize,
                         maxLines: 1,
                         style: widget.searchStyle,
                         controller: searchTextFieldController,
