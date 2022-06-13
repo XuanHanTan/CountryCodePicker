@@ -138,7 +138,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20),
           ),
-          Container(height: 20),
+          Container(height: 10),
           Expanded(
             child: ListView(
               children: [
