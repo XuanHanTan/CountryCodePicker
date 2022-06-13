@@ -93,56 +93,52 @@ class _SelectionDialogState extends State<SelectionDialog> {
         children: [
           SizedBox(height: 20),
           Padding(
-            child: SizedBox(
-              height: 48,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: _isSearch
-                        ? TextField(
-                            style: widget.searchStyle,
-                            decoration: widget.searchDecoration,
-                            onChanged: _filterElements,
-                          )
-                        : Text(
-                            widget.searchTitleText,
-                            style: widget.searchTitleStyle,
-                          ),
-                  ),
-                  Container(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    height: 48,
-                    width: 48,
-                    child: Material(
-                        shape: RoundedRectangleBorder(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: _isSearch
+                      ? TextField(
+                          style: widget.searchStyle,
+                          decoration: widget.searchDecoration,
+                          onChanged: _filterElements,
+                        )
+                      : Text(
+                          widget.searchTitleText,
+                          style: widget.searchTitleStyle,
+                        ),
+                ),
+                Container(
+                  width: 10,
+                ),
+                SizedBox(
+                  height: 48,
+                  width: 48,
+                  child: Material(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28.0)),
+                      color: Colors.transparent,
+                      child: InkWell(
+                        customBorder: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(28.0)),
-                        color: Colors.transparent,
-                        child: InkWell(
-                          customBorder: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28.0)),
-                          radius: 28,
-                          onTap: () async {
-                            setState(() {
-                              _isSearch = !_isSearch;
-                            });
-                            if (!_isSearch) {
-                              loadDefaultFilteredElements();
-                            }
-                          },
-                          child: !_isSearch
-                              ? widget.searchIcon!
-                              : widget.closeIcon!,
-                        )),
-                  ),
-                ],
-              ),
+                        radius: 28,
+                        onTap: () async {
+                          setState(() {
+                            _isSearch = !_isSearch;
+                          });
+                          if (!_isSearch) {
+                            loadDefaultFilteredElements();
+                          }
+                        },
+                        child:
+                            !_isSearch ? widget.searchIcon! : widget.closeIcon!,
+                      )),
+                ),
+              ],
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20),
           ),
-          Container(height: 10),
+          const SizedBox(height: 20),
           Expanded(
               child: _isLoadingCountries
                   ? Center(
