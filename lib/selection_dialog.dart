@@ -9,6 +9,7 @@ class SelectionDialog extends StatefulWidget {
   final TextStyle? searchStyle;
   final TextStyle? textStyle;
   final TextStyle? searchTitleStyle;
+  final String searchTitleText;
   final BoxDecoration? boxDecoration;
   final WidgetBuilder? emptySearchBuilder;
   final bool? showFlag;
@@ -30,27 +31,30 @@ class SelectionDialog extends StatefulWidget {
   /// elements passed as favorite
   final List<CountryCode> favoriteElements;
 
-  SelectionDialog(this.elements, this.favoriteElements,
-      {Key? key,
-      this.showCountryOnly,
-      this.emptySearchBuilder,
-      required this.searchDecoration,
-      this.searchStyle,
-      this.textStyle,
-      this.boxDecoration,
-      this.showFlag,
-      this.flagDecoration,
-      this.flagWidth = 32,
-      this.size,
-      this.backgroundColor,
-      this.barrierColor,
-      this.hideSearch = false,
-      this.closeIcon,
-      this.searchIcon,
-      this.searchTitleStyle,
-      this.dividerColor,
-      this.onPress})
-      : super(key: key);
+  SelectionDialog(
+    this.elements,
+    this.favoriteElements, {
+    Key? key,
+    this.showCountryOnly,
+    required this.searchDecoration,
+    this.searchStyle,
+    this.textStyle,
+    this.searchTitleStyle,
+    this.searchTitleText = "Pick a country code",
+    this.boxDecoration,
+    this.emptySearchBuilder,
+    this.showFlag,
+    this.flagWidth = 32,
+    this.flagDecoration,
+    this.size,
+    this.hideSearch = false,
+    this.closeIcon,
+    this.searchIcon,
+    this.onPress,
+    this.dividerColor,
+    this.backgroundColor,
+    this.barrierColor,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SelectionDialogState();
@@ -111,33 +115,31 @@ class _SelectionDialogState extends State<SelectionDialog> {
                               onChanged: _filterElements,
                             )
                           : Text(
-                              "Pick a country code",
+                              widget.searchTitleText,
                               style: widget.searchTitleStyle,
                             ),
                     ),
-                    Material(
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(28.0)),
-                        color: Colors.transparent,
-                        child: InkWell(
-                          customBorder: new RoundedRectangleBorder(
+                    SizedBox(
+                      height: 48,
+                      width: 48,
+                      child: Material(
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(28.0)),
-                          radius: 28,
-                          child: IconButton(
-                            autofocus: true,
-                            padding: EdgeInsets.zero,
-                            iconSize: 24,
-                            splashRadius: 20,
-                            icon: !_isSearch
-                                ? widget.searchIcon!
-                                : widget.closeIcon!,
-                            onPressed: () {
+                          color: Colors.transparent,
+                          child: InkWell(
+                            customBorder: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(28.0)),
+                            radius: 28,
+                            onTap: () {
                               setState(() {
                                 _isSearch = !_isSearch;
                               });
                             },
-                          ),
-                        )),
+                            child: !_isSearch
+                                ? widget.searchIcon!
+                                : widget.closeIcon!,
+                          )),
+                    ),
                   ],
                 ),
                 padding: EdgeInsets.only(bottom: 2),

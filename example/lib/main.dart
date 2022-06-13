@@ -107,6 +107,7 @@ class _MyAppState extends State<MyApp> {
                 countryFilter: ['IT', 'FR'],
                 showFlagDialog: false,
                 comparator: (a, b) => b.name.compareTo(a.name),
+                searchTitleText: "Testing Title Text",
                 //Get the country information relevant to the initial selection
                 onInit: (code) =>
                     print("on init ${code.name} ${code.dialCode} ${code.name}"),
