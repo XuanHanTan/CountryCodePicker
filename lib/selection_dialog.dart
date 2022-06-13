@@ -91,7 +91,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Padding(
             child: Container(
               decoration: BoxDecoration(
