@@ -72,6 +72,13 @@ class CountryCode {
     return '$_cleanName';
   }
 
+  String? localName() {
+    final localName = codes.firstWhereOrNull((element) {
+      return element["code"] == code;
+    });
+    return localName?["name"];
+  }
+
   String? get _cleanName {
     return name?.replaceAll(RegExp(r'[[\]]'), '').split(',').first;
   }

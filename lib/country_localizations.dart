@@ -22,8 +22,18 @@ class CountryLocalizations {
 
   Future<bool> load() async {
     print('locale.languageCode: ${locale.languageCode}');
-    String jsonString = await rootBundle.loadString(
-        'packages/country_code_picker/i18n/${locale.languageCode}.json');
+    String jsonString = "";
+    if (locale.languageCode == "zh" &&
+        (locale.countryCode == "TW" || locale.countryCode == "HK")) {
+      jsonString = await rootBundle
+          .loadString('packages/country_code_picker/i18n/zh_Hant.json');
+    } else if (locale.languageCode == "zh") {
+      jsonString = await rootBundle
+          .loadString('packages/country_code_picker/i18n/zh_Hans.json');
+    } else {
+      jsonString = await rootBundle.loadString(
+          'packages/country_code_picker/i18n/${locale.languageCode}.json');
+    }
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
     _localizedStrings = jsonMap.map((key, value) {

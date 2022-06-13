@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   collection: ^1.15.0
   universal_platform: ^1.0.0-nullsafety
 
@@ -84,4 +86,5 @@ flutter:
     - packages/country_code_picker/i18n/tr.json
     - packages/country_code_picker/i18n/uk.json
     - packages/country_code_picker/i18n/uz.json
-    - packages/country_code_picker/i18n/zh.json
+    - packages/country_code_picker/i18n/zh_Hans.json
+    - packages/country_code_picker/i18n/zh_Hant.json

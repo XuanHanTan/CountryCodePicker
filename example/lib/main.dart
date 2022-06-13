@@ -3,7 +3,9 @@ import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MaterialApp(home: MyApp(),));
+void main() => runApp(MaterialApp(
+      home: MyApp(),
+    ));
 
 class MyApp extends StatefulWidget {
   @override
@@ -84,11 +86,14 @@ class _MyAppState extends State<MyApp> {
         Locale("ur"),
         Locale("uz"),
         Locale("vi"),
-        Locale("zh")
+        Locale('zh', 'TW'),
+        Locale('zh', 'HK'),
+        Locale('zh', 'CN'),
+        Locale('zh', 'SG'),
       ],
       localizationsDelegates: [
         CountryLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
+        ...GlobalMaterialLocalizations.delegates,
         GlobalWidgetsLocalizations.delegate,
       ],
       home: new Scaffold(
@@ -142,7 +147,7 @@ class _MyAppState extends State<MyApp> {
                 width: 400,
                 height: 60,
                 child: CountryCodePicker(
-                                    bottomSheetContext: context,
+                  bottomSheetContext: context,
                   onChanged: (e) => print(e.toLongString()),
                   initialSelection: 'TF',
                   showCountryOnly: true,

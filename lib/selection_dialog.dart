@@ -63,6 +63,7 @@ class SelectionDialog extends StatefulWidget {
 class _SelectionDialogState extends State<SelectionDialog> {
   /// this is useful for filtering purpose
   late List<CountryCode> filteredElements;
+  bool _isLoadingCountries = false;
   bool _isSearch = false;
 
   @override
@@ -123,10 +124,13 @@ class _SelectionDialogState extends State<SelectionDialog> {
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(28.0)),
                           radius: 28,
-                          onTap: () {
+                          onTap: () async {
                             setState(() {
                               _isSearch = !_isSearch;
                             });
+                            if (!_isSearch) {
+                              loadDefaultFilteredElements();
+                            }
                           },
                           child: !_isSearch
                               ? widget.searchIcon!
@@ -140,96 +144,109 @@ class _SelectionDialogState extends State<SelectionDialog> {
           ),
           Container(height: 10),
           Expanded(
-            child: ListView(
-              children: [
-                widget.favoriteElements.isEmpty
-                    ? const DecoratedBox(decoration: BoxDecoration())
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ...widget.favoriteElements.map(
-                            (f) => _buildOption(f, () {
-                              _selectItem(f);
-                            }),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Divider(
-                              color: widget.dividerColor,
+              child: _isLoadingCountries
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView(children: [
+                      widget.favoriteElements.isEmpty
+                          ? const DecoratedBox(decoration: BoxDecoration())
+                          : Column(
+                              children: [
+                                _buildCountryList(widget.favoriteElements),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Divider(
+                                    color: widget.dividerColor,
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                if (filteredElements.isEmpty)
-                  _buildEmptySearchWidget(context)
-                else
-                  ...filteredElements.map(
-                    (e) => _buildOption(e, () {
-                      _selectItem(e);
-                    }),
-                  )
-              ],
-            ),
-          ),
+                      _buildCountryList(filteredElements)
+                    ])),
         ],
       ),
     );
   }
 
-  Widget _buildOption(CountryCode e, void Function() onTap) {
-    return Material(
-        color: Colors.transparent,
-        child: InkWell(
-            onTap: onTap,
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-              leading: widget.showFlag!
-                  ? Container(
-                      decoration: widget.flagDecoration,
-                      clipBehavior: widget.flagDecoration == null
-                          ? Clip.none
-                          : Clip.hardEdge,
-                      child: Image.asset(
-                        e.flagUri!,
-                        package: 'country_code_picker',
-                        width: widget.flagWidth,
-                      ),
-                    )
-                  : null,
-              title: Text(
-                widget.showCountryOnly!
-                    ? e.toCountryStringOnly()
-                    : e.toLongString(),
-                overflow: TextOverflow.fade,
-                style: widget.textStyle,
-              ),
-            )));
+  Widget _buildCountryList(List<CountryCode> countryList) {
+    return ListView.separated(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        final country = countryList[index];
+
+        return _buildOption(country, () {
+          _selectItem(country);
+        });
+      },
+      separatorBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Divider(
+            color: widget.dividerColor,
+          ),
+        );
+      },
+      itemCount: countryList.length,
+    );
   }
 
-  Widget _buildEmptySearchWidget(BuildContext context) {
-    if (widget.emptySearchBuilder != null) {
-      return widget.emptySearchBuilder!(context);
-    }
-
-    return Center(
-      child: Text('No country found'),
+  Widget _buildOption(CountryCode e, void Function() onTap) {
+    return ListTile(
+      onTap: onTap,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+      leading: widget.showFlag!
+          ? Container(
+              decoration: widget.flagDecoration,
+              clipBehavior:
+                  widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
+              child: Image.asset(
+                e.flagUri!,
+                package: 'country_code_picker',
+                width: widget.flagWidth,
+              ),
+            )
+          : null,
+      title: Text(
+        e.toCountryStringOnly(),
+        overflow: TextOverflow.fade,
+        style: widget.textStyle,
+      ),
+      subtitle: e.localName() != e.toCountryStringOnly()
+          ? Text(e.localName() ?? "")
+          : null,
+      trailing: Text(e.dialCode ?? "", style: widget.textStyle),
     );
   }
 
   @override
   void initState() {
-    filteredElements = widget.elements;
     super.initState();
+    loadDefaultFilteredElements();
+  }
+
+  void loadDefaultFilteredElements() {
+    setState(() {
+      filteredElements = widget.elements
+          .where((element) => !widget.favoriteElements
+              .any((favouriteElement) => element.code == favouriteElement.code))
+          .toList();
+    });
   }
 
   void _filterElements(String s) {
     s = s.toUpperCase();
+
     setState(() {
       filteredElements = widget.elements
           .where((e) =>
-              e.code!.contains(s) ||
-              e.dialCode!.contains(s) ||
-              e.name!.toUpperCase().contains(s))
+              (e.code!.contains(s) ||
+                  e.dialCode!.contains(s) ||
+                  e.name!.toUpperCase().contains(s)) &&
+              !widget.favoriteElements
+                  .any((favouriteElement) => e.code == favouriteElement.code))
           .toList();
     });
   }
