@@ -19,7 +19,6 @@ class CountryCodePicker extends StatefulWidget {
   final bool showCountryOnly;
   final InputDecoration searchDecoration;
   final TextStyle? searchStyle;
-  final String searchTitleText;
   final TextStyle? dialogTextStyle;
   final WidgetBuilder? emptySearchBuilder;
   final Function(CountryCode?)? builder;
@@ -27,7 +26,6 @@ class CountryCodePicker extends StatefulWidget {
   final TextOverflow textOverflow;
   final Icon closeIcon;
   final Icon searchIcon;
-  final TextStyle? searchTitleStyle;
   final BuildContext? bottomSheetContext;
   final Color? dividerColor;
 
@@ -96,7 +94,6 @@ class CountryCodePicker extends StatefulWidget {
     this.showCountryOnly = false,
     this.searchDecoration = const InputDecoration(),
     this.searchStyle,
-    this.searchTitleText = "Pick a country code",
     this.dialogTextStyle,
     this.emptySearchBuilder,
     this.showOnlyCountryWhenClosed = false,
@@ -123,7 +120,6 @@ class CountryCodePicker extends StatefulWidget {
     this.closeIcon = const Icon(Icons.close),
     this.searchIcon = const Icon(Icons.search),
     Key? key,
-    this.searchTitleStyle,
     this.bottomSheetContext,
     this.dividerColor,
   }) : super(key: key);
@@ -309,7 +305,6 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 searchDecoration: widget.searchDecoration,
                 searchStyle: widget.searchStyle,
                 textStyle: widget.dialogTextStyle,
-                searchTitleText: widget.searchTitleText,
                 boxDecoration: widget.boxDecoration,
                 showFlag: widget.showFlagDialog != null
                     ? widget.showFlagDialog
@@ -321,8 +316,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 barrierColor: widget.barrierColor,
                 hideSearch: widget.hideSearch,
                 closeIcon: widget.closeIcon,
-                flagDecoration: widget.flagDecoration,
-                searchTitleStyle: widget.searchTitleStyle,
+                flagDecoration: widget.flagDecoration
               ),
             ),
           ),
@@ -360,7 +354,6 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 emptySearchBuilder: widget.emptySearchBuilder,
                 searchDecoration: widget.searchDecoration,
                 searchStyle: widget.searchStyle,
-                searchTitleText: widget.searchTitleText,
                 textStyle: widget.dialogTextStyle,
                 boxDecoration: widget.boxDecoration,
                 showFlag: widget.showFlagDialog != null
@@ -374,7 +367,6 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 barrierColor: widget.barrierColor,
                 hideSearch: widget.hideSearch,
                 closeIcon: widget.closeIcon,
-                searchTitleStyle: widget.searchTitleStyle,
                 onPress: _publishSelection,
                 dividerColor: widget.dividerColor,
               ),

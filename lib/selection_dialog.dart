@@ -8,8 +8,6 @@ class SelectionDialog extends StatefulWidget {
   final InputDecoration searchDecoration;
   final TextStyle? searchStyle;
   final TextStyle? textStyle;
-  final TextStyle? searchTitleStyle;
-  final String searchTitleText;
   final BoxDecoration? boxDecoration;
   final WidgetBuilder? emptySearchBuilder;
   final bool? showFlag;
@@ -42,8 +40,6 @@ class SelectionDialog extends StatefulWidget {
     required this.searchDecoration,
     this.searchStyle,
     this.textStyle,
-    this.searchTitleStyle,
-    this.searchTitleText = "Pick a country code",
     this.boxDecoration,
     this.emptySearchBuilder,
     this.showFlag,
@@ -111,8 +107,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: TextField(
-                        cursorHeight: widget.searchStyle?.fontSize,
+                      child: Center(child: TextField(
                         maxLines: 1,
                         style: widget.searchStyle,
                         controller: searchTextFieldController,
@@ -122,7 +117,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none),
                         onChanged: _filterElements,
-                      ),
+                      ),)
                     ),
                   ),
                   searchTextFieldController.text != ""
