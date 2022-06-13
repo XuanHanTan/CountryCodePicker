@@ -99,7 +99,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 color: widget.searchTextFieldColor,
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(
                     width: 16,
@@ -110,10 +109,11 @@ class _SelectionDialogState extends State<SelectionDialog> {
                       child: Center(child: TextField(
                         maxLines: 1,
                         style: widget.searchStyle,
+                        textAlignVertical: TextAlignVertical.center,
                         controller: searchTextFieldController,
                         decoration: widget.searchDecoration.copyWith(
                             isDense: true,
-                            contentPadding: EdgeInsets.zero,
+                            isCollapsed: true,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none),
                         onChanged: _filterElements,
