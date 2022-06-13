@@ -22,6 +22,9 @@ class SelectionDialog extends StatefulWidget {
   final Function? onPress;
   final Color? dividerColor;
 
+  /// Search text field color of SelectionDialog
+  final Color? searchTextFieldColor;
+
   /// Background color of SelectionDialog
   final Color? backgroundColor;
 
@@ -52,6 +55,7 @@ class SelectionDialog extends StatefulWidget {
     this.searchIcon,
     this.onPress,
     this.dividerColor,
+    this.searchTextFieldColor,
     this.backgroundColor,
     this.barrierColor,
   }) : super(key: key);
@@ -63,8 +67,8 @@ class SelectionDialog extends StatefulWidget {
 class _SelectionDialogState extends State<SelectionDialog> {
   /// this is useful for filtering purpose
   late List<CountryCode> filteredElements;
+  late TextEditingController searchTextFieldController;
   bool _isLoadingCountries = false;
-  bool _isSearch = false;
 
   @override
   Widget build(BuildContext context) {
@@ -91,50 +95,70 @@ class _SelectionDialogState extends State<SelectionDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: _isSearch
-                      ? TextField(
-                          style: widget.searchStyle,
-                          decoration: widget.searchDecoration,
-                          onChanged: _filterElements,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: widget.searchTextFieldColor,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: TextField(
+                        maxLines: 1,
+                        style: widget.searchStyle,
+                        controller: searchTextFieldController,
+                        decoration: widget.searchDecoration.copyWith(
+                            isDense: true,
+                            contentPadding: EdgeInsets.zero,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none),
+                        onChanged: _filterElements,
+                      ),
+                    ),
+                  ),
+                  searchTextFieldController.text != ""
+                      ? Row(
+                          children: [
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: Material(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(28.0)),
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    customBorder: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(28.0)),
+                                    onTap: () async {
+                                      searchTextFieldController.text = "";
+                                      FocusScope.of(context).unfocus();
+                                      loadDefaultFilteredElements();
+                                    },
+                                    child: widget.closeIcon!,
+                                  )),
+                            ),
+                            const SizedBox(
+                              width: 6,
+                            ),
+                          ],
+                          mainAxisSize: MainAxisSize.min,
                         )
-                      : Text(
-                          widget.searchTitleText,
-                          style: widget.searchTitleStyle,
-                        ),
-                ),
-                Container(
-                  width: 10,
-                ),
-                SizedBox(
-                  height: 48,
-                  width: 48,
-                  child: Material(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(28.0)),
-                      color: Colors.transparent,
-                      child: InkWell(
-                        customBorder: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(28.0)),
-                        radius: 28,
-                        onTap: () async {
-                          setState(() {
-                            _isSearch = !_isSearch;
-                          });
-                          if (!_isSearch) {
-                            loadDefaultFilteredElements();
-                          }
-                        },
-                        child:
-                            !_isSearch ? widget.searchIcon! : widget.closeIcon!,
-                      )),
-                ),
-              ],
+                      : const SizedBox()
+                ],
+              ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20),
           ),
@@ -220,6 +244,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
   @override
   void initState() {
     super.initState();
+    searchTextFieldController = TextEditingController();
     loadDefaultFilteredElements();
   }
 

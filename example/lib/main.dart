@@ -153,6 +153,7 @@ class _MyAppState extends State<MyApp> {
                   showCountryOnly: true,
                   showOnlyCountryWhenClosed: true,
                   favorite: ['+39', 'FR'],
+                  searchTextFieldColor: Colors.blue.withOpacity(0.1),
                 ),
               ),
               SizedBox(

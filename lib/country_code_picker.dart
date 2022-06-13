@@ -31,6 +31,9 @@ class CountryCodePicker extends StatefulWidget {
   final BuildContext? bottomSheetContext;
   final Color? dividerColor;
 
+  /// Search text field color of ModalBottomSheet
+  final Color? searchTextFieldColor;
+
   /// Barrier color of ModalBottomSheet
   final Color? barrierColor;
 
@@ -107,6 +110,7 @@ class CountryCodePicker extends StatefulWidget {
     this.flagWidth = 32.0,
     this.enabled = true,
     this.textOverflow = TextOverflow.ellipsis,
+    this.searchTextFieldColor,
     this.barrierColor,
     this.backgroundColor,
     this.boxDecoration,
@@ -313,12 +317,12 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 flagWidth: widget.flagWidth,
                 size: widget.dialogSize,
                 backgroundColor: widget.dialogBackgroundColor,
+                searchTextFieldColor: widget.searchTextFieldColor,
                 barrierColor: widget.barrierColor,
                 hideSearch: widget.hideSearch,
                 closeIcon: widget.closeIcon,
                 flagDecoration: widget.flagDecoration,
                 searchTitleStyle: widget.searchTitleStyle,
-                searchIcon: widget.searchIcon,
               ),
             ),
           ),
@@ -366,11 +370,11 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 flagDecoration: widget.flagDecoration,
                 size: widget.dialogSize,
                 backgroundColor: widget.dialogBackgroundColor,
+                searchTextFieldColor: widget.searchTextFieldColor,
                 barrierColor: widget.barrierColor,
                 hideSearch: widget.hideSearch,
                 closeIcon: widget.closeIcon,
                 searchTitleStyle: widget.searchTitleStyle,
-                searchIcon: widget.searchIcon,
                 onPress: _publishSelection,
                 dividerColor: widget.dividerColor,
               ),
