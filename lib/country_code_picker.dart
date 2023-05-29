@@ -340,8 +340,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               180 -
               mediaQueryData.padding.vertical;
 
-          return AnimatedPadding(
-            padding: EdgeInsets.only(
+          return AnimatedContainer(
+            margin: EdgeInsets.only(
                 top: mediaQueryData.padding.top + 10,
                 bottom: mediaQueryData.viewInsets.bottom),
             duration: Duration(milliseconds: 100),
