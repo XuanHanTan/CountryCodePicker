@@ -78,14 +78,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
             color: widget.backgroundColor ?? Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-            boxShadow: [
-              BoxShadow(
-                color: widget.barrierColor ?? Colors.grey.withOpacity(1),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
           ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -105,20 +97,21 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   ),
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Center(child: TextField(
-                        maxLines: 1,
-                        style: widget.searchStyle,
-                        textAlignVertical: TextAlignVertical.center,
-                        controller: searchTextFieldController,
-                        decoration: widget.searchDecoration.copyWith(
-                            isDense: true,
-                            isCollapsed: true,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none),
-                        onChanged: _filterElements,
-                      ),)
-                    ),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Center(
+                          child: TextField(
+                            maxLines: 1,
+                            style: widget.searchStyle,
+                            textAlignVertical: TextAlignVertical.center,
+                            controller: searchTextFieldController,
+                            decoration: widget.searchDecoration.copyWith(
+                                isDense: true,
+                                isCollapsed: true,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none),
+                            onChanged: _filterElements,
+                          ),
+                        )),
                   ),
                   searchTextFieldController.text != ""
                       ? Row(

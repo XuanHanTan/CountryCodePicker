@@ -16,6 +16,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      theme: Theme.of(context).copyWith(useMaterial3: true),
       supportedLocales: [
         Locale("af"),
         Locale("am"),

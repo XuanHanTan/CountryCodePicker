@@ -8,3 +8,4 @@ packages
 *.lock
 .dart_tool/
 android/local.properties
+.fvm
