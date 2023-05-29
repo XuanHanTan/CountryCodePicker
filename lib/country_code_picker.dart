@@ -297,27 +297,24 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           child: Container(
             constraints: BoxConstraints(maxHeight: 500, maxWidth: 400),
             child: Dialog(
-              child: SelectionDialog(
-                elements,
-                favoriteElements,
-                showCountryOnly: widget.showCountryOnly,
-                emptySearchBuilder: widget.emptySearchBuilder,
-                searchDecoration: widget.searchDecoration,
-                searchStyle: widget.searchStyle,
-                textStyle: widget.dialogTextStyle,
-                boxDecoration: widget.boxDecoration,
-                showFlag: widget.showFlagDialog != null
-                    ? widget.showFlagDialog
-                    : widget.showFlag,
-                flagWidth: widget.flagWidth,
-                size: widget.dialogSize,
-                backgroundColor: widget.dialogBackgroundColor,
-                searchTextFieldColor: widget.searchTextFieldColor,
-                barrierColor: widget.barrierColor,
-                hideSearch: widget.hideSearch,
-                closeIcon: widget.closeIcon,
-                flagDecoration: widget.flagDecoration
-              ),
+              child: SelectionDialog(elements, favoriteElements,
+                  showCountryOnly: widget.showCountryOnly,
+                  emptySearchBuilder: widget.emptySearchBuilder,
+                  searchDecoration: widget.searchDecoration,
+                  searchStyle: widget.searchStyle,
+                  textStyle: widget.dialogTextStyle,
+                  boxDecoration: widget.boxDecoration,
+                  showFlag: widget.showFlagDialog != null
+                      ? widget.showFlagDialog
+                      : widget.showFlag,
+                  flagWidth: widget.flagWidth,
+                  size: widget.dialogSize,
+                  backgroundColor: widget.dialogBackgroundColor,
+                  searchTextFieldColor: widget.searchTextFieldColor,
+                  barrierColor: widget.barrierColor,
+                  hideSearch: widget.hideSearch,
+                  closeIcon: widget.closeIcon,
+                  flagDecoration: widget.flagDecoration),
             ),
           ),
         ),
@@ -341,9 +338,11 @@ class CountryCodePickerState extends State<CountryCodePicker> {
               mediaQueryData.padding.vertical;
 
           return AnimatedContainer(
-            margin: EdgeInsets.only(
-                top: mediaQueryData.padding.top + 10,
-                bottom: mediaQueryData.viewInsets.bottom),
+            constraints: BoxConstraints(
+              maxHeight:
+                  mediaQueryData.size.height - mediaQueryData.viewInsets.bottom - mediaQueryData.padding.top - 10,
+            ),
+            margin: EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
             duration: Duration(milliseconds: 100),
             child: Container(
               height: bottomSheetHt,
