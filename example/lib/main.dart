@@ -154,6 +154,9 @@ class _MyAppState extends State<MyApp> {
                   showOnlyCountryWhenClosed: true,
                   favorite: ['+39', 'FR'],
                   searchTextFieldColor: Colors.blue.withOpacity(0.1),
+                  emptySearchBuilder: (context) => Center(
+                    child: Text('No country found'),
+                  ),
                 ),
               ),
               SizedBox(

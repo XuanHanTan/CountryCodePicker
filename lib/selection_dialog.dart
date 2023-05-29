@@ -172,7 +172,12 @@ class _SelectionDialogState extends State<SelectionDialog> {
                                 )
                               ],
                             ),
-                      _buildCountryList(filteredElements)
+                      filteredElements.isEmpty
+                          ? Builder(
+                              builder: widget.emptySearchBuilder ??
+                                  (context) => Container(),
+                            )
+                          : _buildCountryList(filteredElements)
                     ])),
         ],
       ),

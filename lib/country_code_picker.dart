@@ -340,7 +340,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           return AnimatedContainer(
             constraints: BoxConstraints(
               maxHeight:
-                  mediaQueryData.size.height - mediaQueryData.viewInsets.bottom - mediaQueryData.padding.top - 10,
+                  mediaQueryData.size.height - mediaQueryData.viewInsets.bottom - mediaQueryData.padding.top - 10, maxWidth: 400
             ),
             margin: EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
             duration: Duration(milliseconds: 100),
