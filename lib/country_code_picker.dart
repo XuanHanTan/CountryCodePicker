@@ -328,46 +328,50 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         }
       });
     } else {
+      final mediaQueryData = MediaQuery.of(bottomSheetContext);
       showModalBottomSheet(
         context: bottomSheetContext,
         isScrollControlled: true,
+        constraints: BoxConstraints(
+          maxHeight:
+              mediaQueryData.size.height - mediaQueryData.padding.top - 10,
+          maxWidth: 600,
+        ),
         builder: (dialogContext) {
           final mediaQueryData = MediaQuery.of(bottomSheetContext);
-          var bottomSheetHt = mediaQueryData.size.height -
-              180 -
-              mediaQueryData.padding.vertical;
 
-          return AnimatedContainer(
-            constraints: BoxConstraints(
-              maxHeight:
-                  mediaQueryData.size.height - mediaQueryData.viewInsets.bottom - mediaQueryData.padding.top - 10, maxWidth: 400
-            ),
-            margin: EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
-            duration: Duration(milliseconds: 100),
-            child: Container(
-              height: bottomSheetHt,
-              child: SelectionDialog(
-                elements,
-                favoriteElements,
-                showCountryOnly: widget.showCountryOnly,
-                emptySearchBuilder: widget.emptySearchBuilder,
-                searchDecoration: widget.searchDecoration,
-                searchStyle: widget.searchStyle,
-                textStyle: widget.dialogTextStyle,
-                boxDecoration: widget.boxDecoration,
-                showFlag: widget.showFlagDialog != null
-                    ? widget.showFlagDialog
-                    : widget.showFlag,
-                flagWidth: widget.flagWidth,
-                flagDecoration: widget.flagDecoration,
-                size: widget.dialogSize,
-                backgroundColor: widget.dialogBackgroundColor,
-                searchTextFieldColor: widget.searchTextFieldColor,
-                barrierColor: widget.barrierColor,
-                hideSearch: widget.hideSearch,
-                closeIcon: widget.closeIcon,
-                onPress: _publishSelection,
-                dividerColor: widget.dividerColor,
+          return Container(
+            height: (3 / 4 * mediaQueryData.size.height) +
+                mediaQueryData.viewInsets.bottom,
+            width: mediaQueryData.size.width,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: 600,
+                ),
+                child: SelectionDialog(
+                  elements,
+                  favoriteElements,
+                  showCountryOnly: widget.showCountryOnly,
+                  emptySearchBuilder: widget.emptySearchBuilder,
+                  searchDecoration: widget.searchDecoration,
+                  searchStyle: widget.searchStyle,
+                  textStyle: widget.dialogTextStyle,
+                  boxDecoration: widget.boxDecoration,
+                  showFlag: widget.showFlagDialog != null
+                      ? widget.showFlagDialog
+                      : widget.showFlag,
+                  flagWidth: widget.flagWidth,
+                  flagDecoration: widget.flagDecoration,
+                  size: widget.dialogSize,
+                  backgroundColor: widget.dialogBackgroundColor,
+                  searchTextFieldColor: widget.searchTextFieldColor,
+                  barrierColor: widget.barrierColor,
+                  hideSearch: widget.hideSearch,
+                  closeIcon: widget.closeIcon,
+                  onPress: _publishSelection,
+                  dividerColor: widget.dividerColor,
+                ),
               ),
             ),
           );

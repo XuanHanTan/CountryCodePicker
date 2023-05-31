@@ -68,11 +68,8 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQueryData = MediaQuery.of(context);
-
     return Container(
       clipBehavior: Clip.hardEdge,
-      width: widget.size?.width ?? mediaQueryData.size.width,
       decoration: widget.boxDecoration ??
           BoxDecoration(
             color: widget.backgroundColor ?? Colors.white,
@@ -80,8 +77,6 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 topLeft: Radius.circular(16), topRight: Radius.circular(16)),
           ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 30),
           Padding(
