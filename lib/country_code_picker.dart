@@ -204,7 +204,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                         ? selectedItem!.toCountryStringOnly()
                         : selectedItem.toString(),
                     style:
-                        widget.textStyle ?? Theme.of(context).textTheme.button,
+                        widget.textStyle ?? Theme.of(context).textTheme.labelLarge,
                     overflow: widget.textOverflow,
                   ),
                 ),
@@ -343,7 +343,6 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           return Container(
             height: (3 / 4 * mediaQueryData.size.height) +
                 mediaQueryData.viewInsets.bottom,
-            width: mediaQueryData.size.width,
             child: Center(
               child: ConstrainedBox(
                 constraints: BoxConstraints(
